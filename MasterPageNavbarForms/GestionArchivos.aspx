@@ -10,7 +10,8 @@
     <asp:GridView ID="gvArchivos" runat="server" AutoGenerateColumns="False" OnRowCommand="gvArchivos_RowCommand">
         <Columns>
             <asp:BoundField DataField="Archivo" HeaderText="Archivo" />
-            <asp:ButtonField CommandName="DescargarArchivo" DataTextField="Descargar" Text="Descargar archivo" />
+            <asp:BoundField DataField="Descargar" Visible="False" />
+            <asp:ButtonField CommandName="DescargarArchivo" Text="Descargar archivo" />
         </Columns>
     </asp:GridView>
 </asp:Content>
