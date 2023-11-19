@@ -7,13 +7,10 @@
     </main>
     <asp:FileUpload ID="subirArchivo" runat="server" />
     <asp:Button ID="btnSubirArchivo" runat="server" Text="Subir" CssClass="btn btn-primary" OnClick="btnSubirArchivo_Click" />
-    <asp:GridView ID="gvArchivos" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="gvArchivos" runat="server" AutoGenerateColumns="False" OnRowCommand="gvArchivos_RowCommand">
         <Columns>
             <asp:BoundField DataField="Archivo" HeaderText="Archivo" />
-            <asp:HyperLinkField HeaderText="Descargar" 
-                    DataNavigateUrlFields="Descargar"
-                    DataNavigateUrlFormatString="Descargar.aspx?id={0}"
-                    Text="Haga click aqui" NavigateUrl="Descargar"/>
+            <asp:ButtonField CommandName="DescargarArchivo" DataTextField="Descargar" Text="Descargar archivo" />
         </Columns>
     </asp:GridView>
 </asp:Content>

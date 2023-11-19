@@ -47,13 +47,26 @@ namespace MasterPageNavbarForms
                         var files = from x in tmpFiles
                                     select new
                                     {
-                                        Archivo = x.Replace(path + userName, string.Empty),
+                                        Archivo = Path.GetFileName(x),
                                         Descargar = x
                                     };
                         gvArchivos.DataSource = files;
                         gvArchivos.DataBind();
                     }
                 }
+            }
+        }
+
+        protected void gvArchivos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "DescargarArchivo")
+            {
+                var link = gvArchivos.Rows[Convert.ToInt32(e.CommandArgument)].Cells[1].Text;
+                Response.Clear();
+                Response.ContentType = "application/octet-stream";
+                Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(link));
+                Response.TransmitFile(link);
+                Response.End();
             }
         }
     }
